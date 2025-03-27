@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Cloud, Droplets, MessageSquare, Plane as Plant, ThermometerSun, Sprout } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function Dashboard() {
+  const { t } = useTranslation();
   const [showChatbot, setShowChatbot] = useState(false);
 
   const weatherData = {
     temperature: '32°C',
     humidity: '65%',
-    forecast: 'Partly Cloudy',
+    forecast: t('dashboard.weather.forecast'),
     windSpeed: '12 km/h',
     rainfall: '0mm'
   };
@@ -15,27 +17,27 @@ export function Dashboard() {
   const soilHealth = {
     moisture: '42%',
     pH: '6.8',
-    nutrients: 'Optimal',
+    nutrients: t('dashboard.soil.nutrients'),
     organicMatter: '3.2%',
-    nitrogen: 'High'
+    nitrogen: t('dashboard.soil.nitrogen')
   };
 
   const recommendations = [
     {
-      title: 'Optimal Irrigation Time',
-      description: 'Best time to irrigate crops today: 6:00 AM - 7:30 AM. Expected to save 20% more water based on current soil moisture levels.',
+      title: t('dashboard.recommendations.irrigation.title'),
+      description: t('dashboard.recommendations.irrigation.description'),
       icon: <Droplets className="w-6 h-6 text-blue-500" />,
       priority: 'High'
     },
     {
-      title: 'Weather Alert',
-      description: 'Light rain expected in the next 24 hours. Consider postponing any planned pesticide application.',
+      title: t('dashboard.recommendations.weather.title'),
+      description: t('dashboard.recommendations.weather.description'),
       icon: <Cloud className="w-6 h-6 text-gray-500" />,
       priority: 'Medium'
     },
     {
-      title: 'Crop Health',
-      description: 'Your wheat crops are showing excellent growth patterns. Predicted yield increase of 15% compared to last season.',
+      title: t('dashboard.recommendations.crop.title'),
+      description: t('dashboard.recommendations.crop.description'),
       icon: <Plant className="w-6 h-6 text-green-500" />,
       priority: 'Low'
     }
@@ -45,14 +47,14 @@ export function Dashboard() {
     {
       title: 'PM-KISAN Scheme',
       description: 'Next installment of ₹2,000 due in 15 days. Complete your e-KYC before the deadline.',
-      status: 'Active',
+      status: t('dashboard.schemes.status.active'),
       amount: '₹2,000',
       deadline: '2024-04-15'
     },
     {
       title: 'Crop Insurance',
       description: 'Premium payment of ₹3,500 pending for Kharif season. Last date for enrollment: April 30, 2024',
-      status: 'Action Required',
+      status: t('dashboard.schemes.status.actionRequired'),
       amount: '₹3,500',
       deadline: '2024-04-30'
     }
@@ -66,58 +68,58 @@ export function Dashboard() {
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="glass-morphism rounded-2xl p-8 card-hover">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-green-800">Weather Conditions</h2>
+                <h2 className="text-2xl font-bold text-green-800">{t('dashboard.weather.title')}</h2>
                 <ThermometerSun className="w-10 h-10 text-yellow-500" />
               </div>
               <div className="grid grid-cols-3 gap-6">
                 <div className="text-center">
-                  <p className="text-gray-600 mb-2">Temperature</p>
+                  <p className="text-gray-600 mb-2">{t('dashboard.weather.temperature')}</p>
                   <p className="text-3xl font-bold text-green-700">{weatherData.temperature}</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-gray-600 mb-2">Humidity</p>
+                  <p className="text-gray-600 mb-2">{t('dashboard.weather.humidity')}</p>
                   <p className="text-3xl font-bold text-green-700">{weatherData.humidity}</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-gray-600 mb-2">Wind Speed</p>
+                  <p className="text-gray-600 mb-2">{t('dashboard.weather.windSpeed')}</p>
                   <p className="text-3xl font-bold text-green-700">{weatherData.windSpeed}</p>
                 </div>
               </div>
               <div className="mt-6 p-4 bg-blue-50 rounded-xl">
-                <p className="text-blue-800 font-medium">Forecast: {weatherData.forecast}</p>
-                <p className="text-blue-600 mt-2">Expected Rainfall: {weatherData.rainfall}</p>
+                <p className="text-blue-800 font-medium">{t('dashboard.weather.forecast')}: {weatherData.forecast}</p>
+                <p className="text-blue-600 mt-2">{t('dashboard.weather.rainfall')}: {weatherData.rainfall}</p>
               </div>
             </div>
 
             <div className="glass-morphism rounded-2xl p-8 card-hover">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-green-800">Soil Health</h2>
+                <h2 className="text-2xl font-bold text-green-800">{t('dashboard.soil.title')}</h2>
                 <Sprout className="w-10 h-10 text-green-500" />
               </div>
               <div className="grid grid-cols-3 gap-6">
                 <div className="text-center">
-                  <p className="text-gray-600 mb-2">Moisture</p>
+                  <p className="text-gray-600 mb-2">{t('dashboard.soil.moisture')}</p>
                   <p className="text-3xl font-bold text-green-700">{soilHealth.moisture}</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-gray-600 mb-2">pH Level</p>
+                  <p className="text-gray-600 mb-2">{t('dashboard.soil.ph')}</p>
                   <p className="text-3xl font-bold text-green-700">{soilHealth.pH}</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-gray-600 mb-2">Organic Matter</p>
+                  <p className="text-gray-600 mb-2">{t('dashboard.soil.organicMatter')}</p>
                   <p className="text-3xl font-bold text-green-700">{soilHealth.organicMatter}</p>
                 </div>
               </div>
               <div className="mt-6 p-4 bg-green-50 rounded-xl">
-                <p className="text-green-800 font-medium">Nutrient Status: {soilHealth.nutrients}</p>
-                <p className="text-green-600 mt-2">Nitrogen Levels: {soilHealth.nitrogen}</p>
+                <p className="text-green-800 font-medium">{t('dashboard.soil.nutrients')}: {soilHealth.nutrients}</p>
+                <p className="text-green-600 mt-2">{t('dashboard.soil.nitrogen')}: {soilHealth.nitrogen}</p>
               </div>
             </div>
           </div>
 
           {/* AI Recommendations */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white text-shadow mb-6">AI Recommendations</h2>
+            <h2 className="text-2xl font-bold text-white text-shadow mb-6">{t('dashboard.recommendations.title')}</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {recommendations.map((rec, index) => (
                 <div key={index} className="glass-morphism rounded-2xl p-6 card-hover">
@@ -130,7 +132,7 @@ export function Dashboard() {
                         rec.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
                         'bg-green-100 text-green-800'
                       }`}>
-                        {rec.priority} Priority
+                        {t(`dashboard.recommendations.priority.${rec.priority.toLowerCase()}`)}
                       </span>
                     </div>
                   </div>
@@ -142,7 +144,7 @@ export function Dashboard() {
 
           {/* Government Schemes */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white text-shadow mb-6">Government Schemes</h2>
+            <h2 className="text-2xl font-bold text-white text-shadow mb-6">{t('dashboard.schemes.title')}</h2>
             <div className="grid md:grid-cols-2 gap-8">
               {schemes.map((scheme, index) => (
                 <div key={index} className="glass-morphism rounded-2xl p-6 card-hover">
@@ -152,17 +154,17 @@ export function Dashboard() {
                       <p className="text-gray-700 mb-4">{scheme.description}</p>
                       <div className="flex gap-4">
                         <div>
-                          <p className="text-sm text-gray-600">Amount</p>
+                          <p className="text-sm text-gray-600">{t('dashboard.schemes.amount')}</p>
                           <p className="font-bold text-green-700">{scheme.amount}</p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-600">Deadline</p>
+                          <p className="text-sm text-gray-600">{t('dashboard.schemes.deadline')}</p>
                           <p className="font-bold text-green-700">{scheme.deadline}</p>
                         </div>
                       </div>
                     </div>
                     <span className={`px-4 py-2 rounded-full text-sm font-medium ${
-                      scheme.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                      scheme.status === t('dashboard.schemes.status.active') ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
                     }`}>
                       {scheme.status}
                     </span>
@@ -186,7 +188,7 @@ export function Dashboard() {
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-2">
                   <MessageSquare className="w-6 h-6 text-green-600" />
-                  <h3 className="font-bold text-green-800">AI Assistant</h3>
+                  <h3 className="font-bold text-green-800">{t('dashboard.chatbot.title')}</h3>
                 </div>
                 <button
                   onClick={() => setShowChatbot(false)}
@@ -198,18 +200,18 @@ export function Dashboard() {
               <div className="h-96 overflow-y-auto rounded-xl p-4 mb-4 bg-white bg-opacity-50">
                 <div className="space-y-4">
                   <p className="text-gray-700 bg-green-50 p-3 rounded-lg inline-block">
-                    How can I help you today with your farming needs?
+                    {t('dashboard.chatbot.welcome')}
                   </p>
                 </div>
               </div>
               <div className="flex gap-3">
                 <input
                   type="text"
-                  placeholder="Type your message..."
+                  placeholder={t('dashboard.chatbot.placeholder')}
                   className="flex-1 px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 bg-white bg-opacity-90"
                 />
                 <button className="bg-green-600 text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors">
-                  Send
+                  {t('dashboard.chatbot.send')}
                 </button>
               </div>
             </div>
