@@ -1,4 +1,4 @@
-# 🌾 AISA – AI & Blockchain-Powered Smart Agri-Marketplace
+# 🌾 AISA – AI & Blockchain-Powered Smart Agri-Marketplace (This is only the MVP phase frontend)
 
 > **Empowering Farmers with Intelligence, Transparency & Profitability**  
 > An all-in-one, AI-powered, blockchain-secured platform revolutionizing agriculture through smart farming, direct marketplace access, and real-time insights.
