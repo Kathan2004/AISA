@@ -49,8 +49,8 @@ AISA is a comprehensive AgriTech solution that bridges the technological divide 
 
 1. **Clone the Repo**  
 ```bash
-git clone https://github.com/yourusername/aisa-agritech.git
-cd aisa-agritech
+git clone https://github.com/Kathan2004/AISA.git
+cd project
 ```
 
 2. **Install Dependencies**  
@@ -75,12 +75,12 @@ Use Firebase CLI or Google Cloud CLI for seamless deployment.
 5. Voice assistant reads output in native language
 
 ## 🔗 Live Demo & Video  
-[🌐 Live Link](#) | [🎥 Demo Video](#)
+[Live link : https://celebrated-torte-12a682.netlify.app/](#) | [🎥 Demo Video](#)
 
 ## 🧑‍💻 Team
 
-Made with 💚 by future innovators at [Your Institute Name].  
-[Contributor 1] | [Contributor 2] | [Mentor Name]
+Made with 💚 by future innovators at [MIT ADT University].  
+[Priyansh Rokade] | [Prabhakar Mishra] | [Kathan Somani]
 
 ## 📜 License  
 MIT License – Use it, improve it, change lives with it.
