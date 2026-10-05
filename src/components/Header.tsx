@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Leaf, Bell, Settings, Languages } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
