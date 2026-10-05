@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { ethers } from 'ethers';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -27,18 +26,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [account, setAccount] = useState<string | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
+  // Follow account switches and lock/unlock in the wallet.
+  useEffect(() => {
+    const onAccountsChanged = (...args: unknown[]) => {
+      const accounts = (args[0] as string[]) || [];
+      setAccount(accounts[0] ?? null);
+      setIsAuthenticated(accounts.length > 0);
+    };
+    window.ethereum?.on?.('accountsChanged', onAccountsChanged);
+    return () => window.ethereum?.removeListener?.('accountsChanged', onAccountsChanged);
+  }, []);
+
   useEffect(() => {
     checkConnection();
     const savedProfile = localStorage.getItem('userProfile');
     if (savedProfile) {
-      setUserProfile(JSON.parse(savedProfile));
+      try {
+        setUserProfile(JSON.parse(savedProfile));
+      } catch {
+        localStorage.removeItem('userProfile');
+      }
     }
   }, []);
 
   const checkConnection = async () => {
     if (window.ethereum) {
       try {
-        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        const accounts = (await window.ethereum.request({ method: 'eth_accounts' })) as string[];
         if (accounts.length > 0) {
           setAccount(accounts[0]);
           setIsAuthenticated(true);
@@ -56,7 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const accounts = (await window.ethereum.request({ method: 'eth_requestAccounts' })) as string[];
       setAccount(accounts[0]);
       setIsAuthenticated(true);
     } catch (error) {
@@ -66,9 +80,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const disconnect = async () => {
     try {
-      if (window.ethereum && window.ethereum.disconnect) {
-        await window.ethereum.disconnect();
-      }
+      // MetaMask has no "disconnect"; revoking the account permission is the equivalent.
+      await window.ethereum
+        ?.request({ method: 'wallet_revokePermissions', params: [{ eth_accounts: {} }] })
+        .catch(() => undefined);
       setAccount(null);
       setIsAuthenticated(false);
       localStorage.removeItem('userProfile');

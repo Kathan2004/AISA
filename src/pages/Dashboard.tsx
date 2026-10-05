@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Cloud, Droplets, MessageSquare, Plane as Plant, ThermometerSun, Sprout } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 

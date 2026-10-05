@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { User, Bell, Shield, HelpCircle, LogOut, Save, Wallet } from 'lucide-react';
+import { User, Bell, Shield, HelpCircle, Save, Wallet } from 'lucide-react';
 import { useAuth, UserProfile } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
