@@ -50,12 +50,12 @@ AISA is a comprehensive AgriTech solution that bridges the technological divide 
 1. **Clone the Repo**  
 ```bash
 git clone https://github.com/Kathan2004/AISA.git
-cd project
+cd AISA
 ```
 
 2. **Install Dependencies**  
 ```bash
-npm install
+npm ci
 ```
 
 3. **Run the App Locally**  
@@ -63,8 +63,13 @@ npm install
 npm run dev
 ```
 
-4. **Deploy**  
-Use Firebase CLI or Google Cloud CLI for seamless deployment.
+4. **Checks and build**  
+```bash
+npm run typecheck && npm run lint && npm run build   # output in dist/
+```
+
+5. **Deploy**  
+Serve `dist/` from any static host (Firebase Hosting, Cloud Storage, Netlify). Wallet login needs MetaMask in the browser.
 
 ## 🤖 AI Demo Flow
 
